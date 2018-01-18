@@ -1,6 +1,9 @@
 ---
 - hosts: all
 
+  vars_files:
+    - vars/general.yml
+
   tasks:
     - name: Install depdendency packages
       tags: dependencies
@@ -12,6 +15,7 @@
         - golang
 
     - name: Create Dev Dir
+      tags: setup_dir
       file: dest={{ userpath }}/{{ item }} state=directory owner={{ username }} recurse=yes
       with_items :
         - Dev
@@ -20,16 +24,22 @@
       tags: clone_bitcoin
       git:
         repo: https://github.com/bitcoin/bitcoin.git 
-        dest: "testing/bitcoin"
+        dest: "{{ userpath }}/Dev/"
 
     - name: Clone Litecoin
       tags: clone_litecoin
       git:
         repo: https://github.com/litecoin-project/litecoin.git 
-        dest: ""
+        dest: "{{ userpath }}/Dev/"
 
     - name: Clone Ethereum
       tags: clone_ethereum
       git:
         repo: https://github.com/ethereum/go-ethereum.git
-        dest: ""
+        dest: "{{ userpath }}/Dev/"
+
+    - name: Clone Ansible
+      tags: clone_ansible
+      git:
+        repo: https://github.com/ejwessel/raspnode_config.git
+        dest: "{{ userpath }}/Dev/"
