@@ -1,29 +1,35 @@
 ---
-- hosts : all
-  - name : Install depdendency packages
-    tags : dependencies
-    become: true
-    user: "{{ username }}"
-    package: name={{ item }} state=latest
-    with_items:
-      - tmux
-      - monit
-      - golang
+- hosts: all
 
-  - name : Clone Bitcoin
-    tags : clone_bitcoin
-    git:
-      repo: https://github.com/bitcoin/bitcoin.git 
-      dest: ""
+  tasks:
+    - name: Install depdendency packages
+      tags: dependencies
+      become: true
+      package: name={{ item }} state=latest
+      with_items:
+        - tmux
+        - monit
+        - golang
 
-  - name : Clone Litecoin
-    tags : clone_litecoin
-    git:
-      repo: https://github.com/litecoin-project/litecoin.git 
-      dest: ""
+    - name: Create Dev Dir
+      file: dest={{ userpath }}/{{ item }} state=directory owner={{ username }} recurse=yes
+      with_items :
+        - Dev
 
-  - name : Clone Ethereum
-    tags : clone_ethereum
-    git:
-      repo: https://github.com/ethereum/go-ethereum.git
-      dest: ""
+    - name: Clone Bitcoin
+      tags: clone_bitcoin
+      git:
+        repo: https://github.com/bitcoin/bitcoin.git 
+        dest: "testing/bitcoin"
+
+    - name: Clone Litecoin
+      tags: clone_litecoin
+      git:
+        repo: https://github.com/litecoin-project/litecoin.git 
+        dest: ""
+
+    - name: Clone Ethereum
+      tags: clone_ethereum
+      git:
+        repo: https://github.com/ethereum/go-ethereum.git
+        dest: ""
