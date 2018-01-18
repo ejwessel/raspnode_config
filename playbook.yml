@@ -24,22 +24,19 @@
       tags: clone_bitcoin
       git:
         repo: https://github.com/bitcoin/bitcoin.git 
-        dest: "{{ userpath }}/Dev/"
+        dest: "{{ userpath }}/Dev/bitcoin"
+      when: type == "bitcoin"
 
     - name: Clone Litecoin
       tags: clone_litecoin
       git:
         repo: https://github.com/litecoin-project/litecoin.git 
-        dest: "{{ userpath }}/Dev/"
+        dest: "{{ userpath }}/Dev/litecoin"
+      when: type == "litecoin"
 
     - name: Clone Ethereum
       tags: clone_ethereum
       git:
         repo: https://github.com/ethereum/go-ethereum.git
-        dest: "{{ userpath }}/Dev/"
-
-    - name: Clone Ansible
-      tags: clone_ansible
-      git:
-        repo: https://github.com/ejwessel/raspnode_config.git
-        dest: "{{ userpath }}/Dev/"
+        dest: "{{ userpath }}/Dev/go-ethereum"
+      when: type == "ethereum"
