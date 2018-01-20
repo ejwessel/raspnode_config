@@ -5,6 +5,33 @@
     - vars/general.yml
 
   tasks:
+    - name: Create Dev Dir
+      tags: setup_dir
+      file: dest={{ userpath }}/{{ item }} state=directory owner={{ username }} recurse=yes
+      with_items :
+        - Dev
+
+    - name: Enlarge Swap File
+      tags: enlarge_swap
+      lineinfile:
+        path: /etc/dphys-swapfile
+        state: present
+        regexp: '^CONF_SWAPSIZE='
+        line: 'CONF_SWAPSIZE=1000'
+
+    - name: Enable Swapon
+      tags: enable_swapon
+      shell: |
+        dphys-swapfile setup
+        dphys-swapfile swapon
+
+    - name: Update & Upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day   
+   
     - name: Install depdendency packages
       tags: dependencies
       become: true
@@ -13,12 +40,6 @@
         - tmux
         - monit
         - golang
-
-    - name: Create Dev Dir
-      tags: setup_dir
-      file: dest={{ userpath }}/{{ item }} state=directory owner={{ username }} recurse=yes
-      with_items :
-        - Dev
 
     - name: Clone Bitcoin
       tags: clone_bitcoin
