@@ -1,2 +1,3 @@
 username: pi
 userpath: "/home/{{ username }}"
+blockchainpath: "{{ username }}/blockchainData"
