@@ -65,6 +65,7 @@
       git:
         repo: https://github.com/bitcoin/bitcoin.git 
         dest: "{{ userpath }}/Dev/bitcoin"
+        update: no
       when: type == "bitcoin"
 
     - name: Clone Litecoin
@@ -72,7 +73,7 @@
       git:
         repo: https://github.com/litecoin-project/litecoin.git 
         dest: "{{ userpath }}/Dev/litecoin"
-        force: yes
+        update: no
       when: type == "litecoin"
 
     - name: Clone Ethereum
@@ -80,6 +81,7 @@
       git:
         repo: https://github.com/ethereum/go-ethereum.git
         dest: "{{ userpath }}/Dev/go-ethereum"
+        update: no
       when: type == "ethereum"
 
     - name: Autogen Litecoin
