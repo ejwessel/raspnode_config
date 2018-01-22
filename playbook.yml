@@ -58,6 +58,7 @@
       package: name={{ item }} state=latest
       with_items:
         - golang
+      when: type == "ethereum"
 
     - name: Clone Bitcoin
       tags: clone_bitcoin
@@ -71,6 +72,7 @@
       git:
         repo: https://github.com/litecoin-project/litecoin.git 
         dest: "{{ userpath }}/Dev/litecoin"
+        force: yes
       when: type == "litecoin"
 
     - name: Clone Ethereum
@@ -80,8 +82,24 @@
         dest: "{{ userpath }}/Dev/go-ethereum"
       when: type == "ethereum"
 
-    - name: Install Litecoin
-      tags: install_litecoin
-       
+    - name: Autogen Litecoin
+      tags: autogen_litecoin
+      command: sh autogen.sh
+      args:
+        chdir: "{{ userpath }}/Dev/litecoin" 
 
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
