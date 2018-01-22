@@ -12,6 +12,8 @@
       with_items :
         - Dev
 
+#TODO: tell where to mount rasppi location
+
     - name: Enlarge Swap File
       tags: enlarge_swap
       become: true
@@ -60,6 +62,8 @@
       with_items:
         - golang
       when: currency_type == "ethereum"
+
+#TODO: let's make roles for these so that we can separate out
 
     - name: Clone Bitcoin
       tags: clone_bitcoin
@@ -110,6 +114,8 @@
       command: make install
       args:
         chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
+
+#TODO: probably can't just run daemon, we need to restart.
 
     - name: Run Litecoin Daemon
       tags: run daemon
