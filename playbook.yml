@@ -13,8 +13,9 @@
 
     - name: Enlarge Swap File
       tags: enlarge_swap
+      become: true
       lineinfile:
-        path: /etc/dphys-swapfile
+        dest: /etc/dphys-swapfile
         state: present
         regexp: '^CONF_SWAPSIZE='
         line: 'CONF_SWAPSIZE=1000'
@@ -32,13 +33,30 @@
         update_cache: yes
         cache_valid_time: 86400 #One day   
    
-    - name: Install depdendency packages
+    - name: Install Basic Depdendency Packages
       tags: dependencies
       become: true
       package: name={{ item }} state=latest
       with_items:
         - tmux
         - monit
+
+    - name: Install Litecoin Depdendencies
+      tags: litecoin_dependencies
+      become: true
+      package: name={{ item }} state=latest
+      with_items:
+        - autoconf 
+        - libtool   
+        - libssl-dev 
+        - libboost-all-dev 
+        - libminiupnpc-dev 
+
+    - name: Install Ethereum Depdendencies
+      tags: litecoin_dependencies
+      become: true
+      package: name={{ item }} state=latest
+      with_items:
         - golang
 
     - name: Clone Bitcoin
@@ -61,3 +79,9 @@
         repo: https://github.com/ethereum/go-ethereum.git
         dest: "{{ userpath }}/Dev/go-ethereum"
       when: type == "ethereum"
+
+    - name: Install Litecoin
+      tags: install_litecoin
+       
+
+      
