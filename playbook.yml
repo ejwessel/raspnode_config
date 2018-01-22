@@ -3,6 +3,7 @@
 
   vars_files:
     - vars/general.yml
+    - vars/releases.yml
 
   tasks:
     - name: Create Dev Dir
@@ -73,7 +74,7 @@
       git:
         repo: https://github.com/litecoin-project/litecoin.git 
         dest: "{{ userpath }}/Dev/litecoin"
-        update: no
+        version: "{{ litecoin_version }}"
       when: currency_type == "litecoin"
 
     - name: Clone Ethereum
