@@ -12,7 +12,14 @@
       with_items :
         - Dev
 
-#TODO: tell where to mount rasppi location
+    - name: USB Automount
+      tags: usb_automount
+      become: true
+      lineinfile:
+        dest: /etc/fstab
+        state: present
+        regexp: '^/dev/sda1 {{ blockchainpath }}  vfat  uid=pi,gid=pi,umask=0022,sync,auto,nosuid,rw,nouser 0 0'
+        line: '/dev/sda1 {{ blockchainpath }}  vfat  uid=pi,gid=pi,umask=0022,sync,auto,nosuid,rw,nouser 0 0'
 
     - name: Enlarge Swap File
       tags: enlarge_swap
