@@ -12,7 +12,9 @@
       with_items :
         - Dev
 
-    - name: USB Automount
+    #this won't take effect until rreboot
+    #this also assumes that the usb has been properly formatted and placed on sda1 slot
+    - name: Automount External Storage
       tags: usb_automount
       become: true
       lineinfile:
