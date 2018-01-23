@@ -1,6 +1,8 @@
 ---
 - hosts: all
 
+#TODO: move all common tasks into pre_tasks
+
   vars_files:
     - vars/general.yml
     - vars/releases.yml
