@@ -23,8 +23,8 @@
   args:
     chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
 
-- name: Run {{ currency_type }} Daemon
-  tags: run_daemon
-  command: "{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
-  args:
-    chdir: "{{ userpath }}"
+#- name: Run {{ currency_type }} Daemon
+#  tags: run_daemon
+#  command: "{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
+#  args:
+#    chdir: "{{ userpath }}"
