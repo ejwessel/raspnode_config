@@ -57,4 +57,5 @@
     - { role: ethereum, when:  currency_type == 'ethereum' }
 
   tasks:
+#TODO: add monit 
 #TODO: probably can't just run daemon, we need to restart.
