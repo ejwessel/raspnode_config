@@ -1,17 +1,3 @@
-- name: Install Ethereum Depdendencies
-  tags: litecoin_dependencies
-  become: true
-  package: name={{ item }} state=latest
-  with_items:
-    - golang
-
-- name: Clone Ethereum
-  tags: clone_ethereum
-  git:
-    repo: https://github.com/ethereum/go-ethereum.git
-    dest: "{{ userpath }}/Dev/go-ethereum"
-    update: no
-
 - name: Autogen Command {{ currency_type }}
   tags: autogen
   command: sh autogen.sh
@@ -36,3 +22,9 @@
   command: make install
   args:
     chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
+
+- name: Run {{ currency_type }} Daemon
+  tags: run_daemon
+  command: "{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
+  args:
+    chdir: "{{ userpath }}"

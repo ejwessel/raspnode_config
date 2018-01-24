@@ -15,3 +15,5 @@
     repo: https://github.com/litecoin-project/litecoin.git 
     dest: "{{ userpath }}/Dev/litecoin"
     version: "{{ litecoin_version }}"
+
+- include: bitcoin-litecoin_common_tasks.yml
