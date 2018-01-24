@@ -1,0 +1,13 @@
+- name: Install Ethereum Depdendencies
+  tags: litecoin_dependencies
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - golang
+
+- name: Clone Ethereum
+  tags: clone_ethereum
+  git:
+    repo: https://github.com/ethereum/go-ethereum.git
+    dest: "{{ userpath }}/Dev/go-ethereum"
+    update: no

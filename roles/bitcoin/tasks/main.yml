@@ -1,0 +1,6 @@
+- name: Clone Bitcoin
+  tags: clone_bitcoin
+  git:
+    repo: https://github.com/bitcoin/bitcoin.git 
+    dest: "{{ userpath }}/Dev/bitcoin"
+    update: no

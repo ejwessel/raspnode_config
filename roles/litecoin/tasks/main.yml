@@ -1,0 +1,17 @@
+- name: Install Litecoin Depdendencies
+  tags: litecoin_dependencies
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - autoconf 
+    - libtool   
+    - libssl-dev 
+    - libboost-all-dev 
+    - libminiupnpc-dev 
+
+- name: Clone Litecoin
+  tags: clone_litecoin
+  git:
+    repo: https://github.com/litecoin-project/litecoin.git 
+    dest: "{{ userpath }}/Dev/litecoin"
+    version: "{{ litecoin_version }}"

@@ -1,8 +1,6 @@
 ---
 - hosts: all
 
-#TODO: move all common tasks into pre_tasks
-
   vars_files:
     - vars/general.yml
     - vars/releases.yml
@@ -14,8 +12,6 @@
       with_items :
         - Dev
 
-    #this won't take effect until rreboot
-    #this also assumes that the usb has been properly formatted and placed on sda1 slot
     - name: Automount External Storage
       tags: usb_automount
       become: true
@@ -34,6 +30,7 @@
         regexp: '^CONF_SWAPSIZE='
         line: 'CONF_SWAPSIZE=1000'
 
+    #TODO:User a handler for reboot or post_task
     - name: Enable Swapon
       tags: enable_swapon
       shell: |
@@ -55,57 +52,23 @@
         - tmux
         - monit
 
-    - name: Install Litecoin Depdendencies
-      tags: litecoin_dependencies
-      become: true
-      package: name={{ item }} state=latest
-      with_items:
-        - autoconf 
-        - libtool   
-        - libssl-dev 
-        - libboost-all-dev 
-        - libminiupnpc-dev 
+    - include_role:
+        name: bitcoin
+        when: "{{ currency_type }} == 'bitcoin'"
 
-    - name: Install Ethereum Depdendencies
-      tags: litecoin_dependencies
-      become: true
-      package: name={{ item }} state=latest
-      with_items:
-        - golang
-      when: currency_type == "ethereum"
+    - include_role:
+        name: litecoin
+        when: "{{ currency_type }} == 'litecoin'"
 
-#TODO: let's make roles for these so that we can separate out
-
-    - name: Clone Bitcoin
-      tags: clone_bitcoin
-      git:
-        repo: https://github.com/bitcoin/bitcoin.git 
-        dest: "{{ userpath }}/Dev/bitcoin"
-        update: no
-      when: currency_type == "bitcoin"
-
-    - name: Clone Litecoin
-      tags: clone_litecoin
-      git:
-        repo: https://github.com/litecoin-project/litecoin.git 
-        dest: "{{ userpath }}/Dev/litecoin"
-        version: "{{ litecoin_version }}"
-      when: currency_type == "litecoin"
-
-    - name: Clone Ethereum
-      tags: clone_ethereum
-      git:
-        repo: https://github.com/ethereum/go-ethereum.git
-        dest: "{{ userpath }}/Dev/go-ethereum"
-        update: no
-      when: currency_type == "ethereum"
+    - include_role:
+        name: ethereum
+        when: "{{ currency_type }} == 'ethereum'"
 
     - name: Autogen Command {{ currency_type }}
       tags: autogen
       command: sh autogen.sh
       args:
         chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
-      when: currency_type == "litecoin"
 
     - name: Configure Command {{ currency_type }}
       tags: configure
