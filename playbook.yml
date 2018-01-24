@@ -3,7 +3,6 @@
 
   vars_files:
     - vars/general.yml
-    - vars/releases.yml
 
   pre_tasks:
     - name: Create Dev Dir
