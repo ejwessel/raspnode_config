@@ -5,7 +5,7 @@
     - vars/general.yml
     - vars/releases.yml
 
-  tasks:
+  pre_tasks:
     - name: Create Dev Dir
       tags: setup_dir
       file: dest={{ userpath }}/{{ item }} state=directory owner={{ username }} recurse=yes
@@ -52,18 +52,12 @@
         - tmux
         - monit
 
-    - include_role:
-        name: bitcoin
-        when: "{{ currency_type }} == 'bitcoin'"
+  roles:
+    - { role: bitcoin, when:  currency_type == 'bitcoin' }
+    - { role: litecoin, when:  currency_type == 'litecoin' }
+    - { role: ethereum, when:  currency_type == 'ethereum' }
 
-    - include_role:
-        name: litecoin
-        when: "{{ currency_type }} == 'litecoin'"
-
-    - include_role:
-        name: ethereum
-        when: "{{ currency_type }} == 'ethereum'"
-
+  tasks:
     - name: Autogen Command {{ currency_type }}
       tags: autogen
       command: sh autogen.sh
