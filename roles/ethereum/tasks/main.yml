@@ -10,7 +10,7 @@
   git:
     repo: https://github.com/ethereum/go-ethereum.git
     dest: "{{ userpath }}/Dev/go-ethereum"
-    update: no
+    version: "{{ ethereum_version }}"
 
 - name: Autogen Command {{ currency_type }}
   tags: autogen
