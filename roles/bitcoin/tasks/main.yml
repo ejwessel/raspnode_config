@@ -15,6 +15,6 @@
   git:
     repo: https://github.com/bitcoin/bitcoin.git 
     dest: "{{ userpath }}/Dev/bitcoin"
-    update: no
+    version: "{{ bitcoin_version }}"
 
 - include: bitcoin-litecoin_common_tasks.yml
