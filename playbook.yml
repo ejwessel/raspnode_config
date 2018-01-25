@@ -11,6 +11,16 @@
       with_items :
         - Dev
 
+    #This option is available in raspi-config
+    - name: Memory Split
+      tags: memory_split
+      become: true
+      lineinfile:
+        dest: /boot/config.txt
+        state: present
+        regexp: '^gpu_mem='
+        line: 'gpu_mem=16'
+
     - name: Automount External Storage
       tags: usb_automount
       become: true
