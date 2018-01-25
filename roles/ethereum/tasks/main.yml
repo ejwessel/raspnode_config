@@ -4,6 +4,7 @@
   package: name={{ item }} state=latest
   with_items:
     - golang
+    - build-essential
 
 - name: Clone Ethereum
   tags: clone_ethereum
@@ -12,27 +13,15 @@
     dest: "{{ userpath }}/Dev/go-ethereum"
     version: "{{ ethereum_version }}"
 
-- name: Autogen Command {{ currency_type }}
-  tags: autogen
-  command: sh autogen.sh
-  args:
-    chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
-
-- name: Configure Command {{ currency_type }}
-  tags: configure
-  command: sh configure --disable-wallet
-  args: 
-    chdir: "{{ userpath }}/Dev/{{ currency_type }}"
-
 - name: Make Command {{ currency_type }}
   tags: make
-  command: make -j2
+  command: make geth
   args:
-    chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
+    chdir: "{{ userpath }}/Dev/go-ethereum"
 
 - name: Install {{ currency_type }}
   tags: install
   become: true
-  command: make install
+  command: cp {{ userpath }}/Dev/go-ethereum/build/bin/geth /usr/local/bin
   args:
-    chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
+    chdir: "{{ userpath }}/Dev/go-ethereum"
