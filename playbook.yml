@@ -46,12 +46,14 @@
         dphys-swapfile swapon
 
     - name: Update & Upgrade apt packages
+      tags: update_upgrade
       become: true
       apt:
         upgrade: yes
         update_cache: yes
         cache_valid_time: "{{ apt_get_valid_time }}"
-   
+
+    #note monit auto inits on install under /usr/bin/monit -c /etc/monit/monitrc process   
     - name: Install Basic Depdendency Packages
       tags: dependencies
       become: true
