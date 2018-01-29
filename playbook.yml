@@ -66,14 +66,9 @@
     - { role: bitcoin, when:  currency_type == 'bitcoin' }
     - { role: litecoin, when:  currency_type == 'litecoin' }
     - { role: ethereum, when:  currency_type == 'ethereum' }
-
+    - { role: monit }
   tasks:
-    - name: Monit Config
-      tags: monit_config
-      become: true
-      shell: |
-        echo "empty for now"
-      #perhpas this should become a role...      
+
 #TODO: probably can't just run daemon, we need to restart.
 #TODO: might make sense to add to cron here and reboot?
 #TODO: add monit 
