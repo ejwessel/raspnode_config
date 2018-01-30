@@ -41,6 +41,7 @@
 
     - name: Enable Swapon
       tags: enable_swapon
+      become: true
       shell: |
         dphys-swapfile setup
         dphys-swapfile swapon
