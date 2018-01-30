@@ -5,6 +5,7 @@
   with_items:
     - autoconf 
     - libtool   
+    - libevent-dev 
     - libssl-dev 
     - libboost-all-dev 
     - libminiupnpc-dev 
