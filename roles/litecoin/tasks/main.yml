@@ -4,8 +4,8 @@
   package: name={{ item }} state=latest
   with_items:
     - autoconf 
-    - libtool   
     - libevent-dev 
+    - libtool   
     - libssl-dev 
     - libboost-all-dev 
     - libminiupnpc-dev 
