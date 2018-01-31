@@ -1,0 +1,9 @@
+set daemon 60
+set logfile /var/log/monit.log
+
+check process litecoind with pidfile "/home/pi/blockchainData/litecoin.pid"
+    start program "/usr/local/bin/litecoind -datadir=/home/pi/blockchainData -daemon"
+    stop program "/usr/local/bin/litecoin-cli -datadir=/home/pi/blockchainData stop"
+
+#TODO need to fix the variable since this is not a variable.
+#TODO: need to ensure that the process and commands are generic to the chosen currency_type
