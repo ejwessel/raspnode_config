@@ -67,7 +67,7 @@
     - { role: bitcoin, when:  currency_type == 'bitcoin' }
     - { role: litecoin, when:  currency_type == 'litecoin' }
     - { role: ethereum, when:  currency_type == 'ethereum' }
-    - { role: monit }
+    - { role: monit, currency_type: currency_type }
   tasks:
 
 #TODO: probably can't just run daemon, we need to restart.
