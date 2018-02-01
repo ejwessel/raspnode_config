@@ -1,5 +1,5 @@
 username: pi
 userpath: "/home/{{ username }}"
-blockchainpath: "{{ username }}/blockchainData"
+blockchainpath: "{{ userpath }}/blockchainData"
 
 apt_get_valid_time: 86400 #1 day
