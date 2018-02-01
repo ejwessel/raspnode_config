@@ -5,6 +5,3 @@ monitrc_file_content: |
   check process {{ currency_type }}d with pidfile "{{ blockchainpath }}/{{ currency_type }}.pid"
       start program "/usr/local/bin/{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
       stop program "/usr/local/bin/{{ currency_type }}-cli -datadir={{ blockchainpath }} stop"
-
-  #TODO need to fix the variable since this is not a variable.
-  #TODO: need to ensure that the process and commands are generic to the chosen currency_type
