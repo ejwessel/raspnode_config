@@ -75,7 +75,7 @@
       become: true
       shell: "{{ monit_path }} -c {{ monit_control_path }}" 
     
-#TODO: probably can't just run daemon, we need to restart.
+#TODO: restart machine
 
 
 
