@@ -67,9 +67,13 @@
     - { role: bitcoin, when:  currency_type == 'bitcoin' }
     - { role: litecoin, when:  currency_type == 'litecoin' }
     - { role: ethereum, when:  currency_type == 'ethereum' }
-    - { role: monit }
-  tasks:
 
+  post_tasks:
+    - name: Start monit
+      tags: start_monit
+      become: true
+      shell: "{{ monit_path }} -c {{ monit_control_path }}" 
+    
 #TODO: probably can't just run daemon, we need to restart.
 #TODO: might make sense to add to cron here and reboot?
 #TODO: add monit 
