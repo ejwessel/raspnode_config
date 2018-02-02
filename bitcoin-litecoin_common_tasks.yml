@@ -23,6 +23,18 @@
   args:
     chdir: "{{ userpath }}/Dev/{{ currency_type }}" 
 
+- name: Setup monitrc file for {{ currency_type }}
+  tags: setup_monitrc
+  become: true
+  blockinfile:
+    dest: "{{ monit_control_path }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0600
+    block: |
+      {{ monitrc_file_content }}
+
 #- name: Run {{ currency_type }} Daemon
 #  tags: run_daemon
 #  command: "{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
