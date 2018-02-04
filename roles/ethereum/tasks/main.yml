@@ -25,3 +25,15 @@
   command: cp {{ userpath }}/Dev/go-ethereum/build/bin/geth /usr/local/bin
   args:
     chdir: "{{ userpath }}/Dev/go-ethereum"
+
+- name: Setup monitrc file for {{ currency_type }}
+  tags: setup_monitrc
+  become: true
+  blockinfile:
+    dest: "{{ monit_control_path }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0600
+    block: |
+      {{ monitrc_file_content }}

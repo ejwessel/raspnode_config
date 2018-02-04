@@ -6,10 +6,4 @@ apt_get_valid_time: 86400 #1 day
 
 monit_path: "/usr/bin/monit"
 monit_control_path: "/etc/monit/monitrc"
-monitrc_file_content: |
-  set daemon 60
-  set logfile /var/log/monit.log
 
-  check process {{ currency_type }}d with pidfile "{{ blockchainpath }}/{{ currency_type }}.pid"
-      start program "/usr/local/bin/{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
-      stop program "/usr/local/bin/{{ currency_type }}-cli -datadir={{ blockchainpath }} stop"
