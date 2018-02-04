@@ -5,5 +5,5 @@ monitrc_file_content: |
   set logfile /var/log/monit.log
 
   check process {{ currency_type }}d with pidfile "{{ blockchainpath }}/{{ currency_type }}.pid"
-      start program "/usr/local/bin/{{ currency_type }}d -datadir={{ blockchainpath }} -daemon"
-      stop program "/usr/local/bin/{{ currency_type }}-cli -datadir={{ blockchainpath }} stop"
+      start program "/usr/bin/tmux/tmux new -d -s sync_blockchain 'geth --datadir {{ blockchainpath }} --ipcdisable --syncmode 'fast' --cache=512 console'"
+      stop program ""
