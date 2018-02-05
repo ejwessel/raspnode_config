@@ -6,4 +6,4 @@ monitrc_file_content: |
 
   check process {{ currency_type }}d with pidfile "{{ blockchainpath }}/{{ currency_type }}.pid"
       start program "/usr/bin/tmux/tmux new -d -s sync_blockchain 'geth --datadir {{ blockchainpath }} --ipcdisable --syncmode 'fast' --cache=512 console'"
-      stop program ""
+      stop program "tmux kill-session -t sync_blockchain"
