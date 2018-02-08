@@ -1,9 +1,6 @@
 ethereum_version: v1.7.3
 
 monitrc_file_content: |
-  set daemon 60
-  set logfile /var/log/monit.log
-
   check process geth matching "geth"
       start program "/usr/bin/tmux/tmux new -d -s sync_blockchain 'geth --datadir {{ blockchainpath }} --ipcdisable --syncmode 'fast' --cache=512'"
       stop program "tmux kill-session -t sync_blockchain"

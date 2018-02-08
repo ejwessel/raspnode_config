@@ -1,0 +1,3 @@
+monitrc_file_content: |
+  set daemon 60
+  set logfile /var/log/monit.log
