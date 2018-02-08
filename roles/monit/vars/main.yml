@@ -11,3 +11,10 @@ monitrc_file_content: |
   Description:  $DESCRIPTION
   Action:  Attempting to $ACTION process $SERVICE
   }
+
+monit_mail_server: |
+  set mailserver
+      {{ prompt_server }}
+      port {{ prompt_port}}
+      username {{ prompt_username }} password {{ prompt_password }}
+      using ssl
