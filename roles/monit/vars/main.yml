@@ -6,8 +6,10 @@ monitrc_file_content: |
   set alert {{ alert_email }} only on { nonexist }
 
   set mail-format {
-    subject: $SERVICE $DESCRIPTION on $HOST
-    message: $DATE
-             $SERVICE $DESCRIPTION on $HOST
-             $SERVICE $ACTION             
+      subject: $SERVICE $DESCRIPTION
+      message: $DATE
+  Host:  $HOST
+  Process:  $SERVICE
+  Description:  $DESCRIPTION
+  Action:  Attempting to $ACTION process $SERVICE
   }
