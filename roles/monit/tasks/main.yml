@@ -9,3 +9,26 @@
     mode: 0600
     block: |
       {{ monitrc_file_content }}
+
+- name: Prompt for SMTP input
+  tags: setup_monit_smtp
+  vars_prompt:
+    - name: "prompt_server"
+      prompt: "Enter SMTP Server:"
+    - name: "prompt_port"
+      prompt: "Enter SMTP Port:"
+    - name: "prompt_username"
+      prompt: "Enter SMTP Server Username:"
+    - name: "prompt_password"
+      prompt: "Enter SMTP Server Password:"
+      private: yes 
+
+- name: Setup monitrc SMTP
+  tags: setup_monit_smtp
+  become: true
+  insertafter: EOF
+  blockinfile:
+    dest: "{{ monit_control_path }}"
+    block: |
+      {{ monit_mail_server }}
+  when: setup_smtp
