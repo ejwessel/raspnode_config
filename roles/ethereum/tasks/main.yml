@@ -35,5 +35,6 @@
     owner: root
     group: root
     mode: 0600
+    insertafter: EOF
     block: |
       {{ monitrc_file_content }}
