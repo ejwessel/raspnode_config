@@ -22,6 +22,7 @@
     - name: "prompt_password"
       prompt: "Enter SMTP Server Password:"
       private: yes 
+  when: setup_smtp
 
 - name: Setup monitrc SMTP
   tags: setup_monit_smtp
