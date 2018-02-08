@@ -7,3 +7,4 @@ apt_get_valid_time: 86400 #1 day
 monit_path: "/usr/bin/monit"
 monit_control_path: "/etc/monit/monitrc"
 
+alert_email: none@none.com
