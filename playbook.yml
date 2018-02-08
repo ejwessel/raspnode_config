@@ -64,7 +64,6 @@
         - monit
 
   roles:
-    - { role: monit }
     - { role: bitcoin, when:  currency_type == 'bitcoin' }
     - { role: litecoin, when:  currency_type == 'litecoin' }
     - { role: ethereum, when:  currency_type == 'ethereum' }
