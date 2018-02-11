@@ -17,7 +17,7 @@ _Note: The size of the blockchain may be substrantially larger months or years f
 - USB keyboard
 - Router and a connection to the Internet
 
-### Install OS
+### Installation of the Rasbian OS
 After initial assembmly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
 TODO: I need some pictures...
 
