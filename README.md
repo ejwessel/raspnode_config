@@ -7,7 +7,9 @@ I wanted to setup a raspberypi as a Bitcoin, Litecoin, or Ethereum full node, bu
 I am using the following hardware:
 
 - [Raspberry Pi 3](https://www.amazon.com/CanaKit-Raspberry-Complete-Starter-Kit/dp/B01C6Q2GSY/ref=sr_1_2?ie=UTF8&qid=1518376095&sr=8-2&keywords=canakit)
-- [256 GB Flash Drive](https://www.amazon.com/SanDisk-Cruzer-Glide-3-0-256GB/dp/B01JHLJBO8/ref=sr_1_3?s=electronics&ie=UTF8&qid=1518376171&sr=1-3&keywords=256+flash+drive). This will be used to store the blockchain. The size of the blockchain may be substrantially larger months or years from this post, ensure to get a drive that can support the blockchain size. You can check the [blockchain sizes here](https://bitinfocharts.com/)
+- [256 GB Flash Drive](https://www.amazon.com/SanDisk-Cruzer-Glide-3-0-256GB/dp/B01JHLJBO8/ref=sr_1_3?s=electronics&ie=UTF8&qid=1518376171&sr=1-3&keywords=256+flash+drive). 
+
+_Note: The size of the blockchain may be substrantially larger months or years from this post, ensure to get an external drive that can support the blockchain size. You can check the [blockchain sizes here](https://bitinfocharts.com/)_
 
 ### Setup of External Drive
 
