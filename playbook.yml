@@ -3,6 +3,7 @@
 
   vars_files:
     - vars/general.yml
+    - roles/monit/defaults/main.yml
 
   pre_tasks:
     - name: Create Dev Dir

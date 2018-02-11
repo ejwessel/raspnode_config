@@ -1,4 +1,8 @@
+monit_path: "/usr/bin/monit"
+monit_control_path: "/etc/monit/monitrc"
+
 alert_email: none@none.com
+
 server: smtp.gmail.com
 port: 465
 server_username: none@none.com
