@@ -1,3 +1,15 @@
-# raspnode_config
+# Raspnode Config
 
-Specific setup instructions coming soon.
+### Why/Motivation
+
+### Hardware
+
+### Setup of External Drive
+
+### Code Structure
+
+### Setup
+
+### Advanced
+
+### Resources
