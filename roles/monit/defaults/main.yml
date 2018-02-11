@@ -1,1 +1,5 @@
 alert_email: none@none.com
+server: smtp.gmail.com
+port: 465
+server_username: none@none.com
+server_password: password123

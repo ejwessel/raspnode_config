@@ -14,7 +14,7 @@ monitrc_file_content: |
 
 monit_mail_server: |
   set mailserver
-      {{ prompt_server }}
-      port {{ prompt_port }}
-      username {{ prompt_username }} password {{ prompt_password }}
+      {{ server }}
+      port {{ port }}
+      username {{ server_username }} password {{ server_password }}
       using ssl

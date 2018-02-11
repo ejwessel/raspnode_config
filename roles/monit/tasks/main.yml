@@ -10,20 +10,6 @@
     block: |
       {{ monitrc_file_content }}
 
-- name: Prompt for SMTP input
-  tags: setup_monit_smtp
-  vars_prompt:
-    - name: "prompt_server"
-      prompt: "Enter SMTP Server:"
-    - name: "prompt_port"
-      prompt: "Enter SMTP Port:"
-    - name: "prompt_username"
-      prompt: "Enter SMTP Server Username:"
-    - name: "prompt_password"
-      prompt: "Enter SMTP Server Password:"
-      private: yes 
-  when: setup_smtp
-
 - name: Setup monitrc SMTP
   tags: setup_monit_smtp
   become: true
