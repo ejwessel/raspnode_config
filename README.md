@@ -1,7 +1,9 @@
 # Raspnode Config
 
 ### Motivation
-I wanted to setup a raspbery pi as a Bitcoin, Litecoin, or Ethereum full node, but most of the resources I found online were no longer maintained, hard to find, or had fragmented steps. For example, when I started I was following the guides at http://raspnode.com/. These steps were invaluable for the initial phases, but unfortunately, "it is currently no longer being maintained but will remain online in case people find the tutorials useful." While I was able to find the resources I needed and resolve any dependencies that were missing I thought that there might be other people out there that might want to support the network, yet have difficulty getting started or give up due to fragmented resources. I decided that I'd try and consolidate the common steps and turn them into code - if not for others then for myself since I wanted reproducible versioned steps that I could apply to multiple machines; everything can be [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code) 
+I wanted to setup a raspbery pi as a Bitcoin, Litecoin, or Ethereum full node, but most of the documentation I found online was no longer maintained or hard to find. The guides at http://raspnode.com/ were invaluable for the initial phases, but I still encountered missing depdendencies and issues. While I was able to find the resources I needed and resolve any dependencies that were missing I thought that there might be others that might want to support the network, yet have difficulty getting started or give up due to fragmented resources. I decided that I'd try and consolidate the common steps and turn them into code. This way anybody-including myself-could use reproducible and versioned steps to set up a new node; I thought it would be smarter represent the [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code).
+
+_Note: a lot of the steps will have overlap to that of raspnode's_
 
 ### Hardware
 I am using the following hardware:
@@ -19,24 +21,63 @@ _Note: The size of the blockchain may be substrantially larger months or years f
 
 ### Installation of the Rasbian OS
 After initial assembmly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
-TODO: PICTURES SETUP
+__TODO: PICTURES SETUP__
 
 ### Setup of External Drive
-Take the external USB flash drive and ensure it's both empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) alredy in the correct format, you just need to empty it and give it a better name.
+Take the external USB drive and ensure it's empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) already in the correct format. Empty it's contents and rename it, we will use the name for verifying the drive is using the correct file format.
 
-~~In order for the setup script to work, we'll need to insert the flash drive into the bottom right USB port. This is configurable in the script, but the script expects it to be in `/dev/sda1` (that spot) to automount the drive if the pi were to restart.~~
-
-TODO: PICTURE ATTACHED
-
-You can confirm the correct setup of the flash drive by typing `sudo blkid` into terminal and looking for a line that looks like the following:
+Plug the USB  drive into your computer or raspberry, confirm the correct setup of the flash drive by typing `sudo blkid` into terminal and looking for a line in the output that looks like the following:
 
 `/dev/sda1: LABEL="<your usb label>" UUID="<some id>" TYPE="vfat"`
 
-If `TYPE="vfat"` then you're good to go
+If `TYPE="vfat"` then you're good to go. If not then you'll need to format the drive. 
+
+__TODO: STEPS for formatting thd drive__
+
+
+I've inserted my drive like such:
+
+__TODO: PICTURE ATTACHED__
+
 
 ### Code Structure
-
-TODO: Insert layout of code structure 
+```
+.
+├── playbook.yml
+├── README.md
+├── roles
+│   ├── bitcoin
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── vars
+│   │       └── main.yml
+│   ├── ethereum
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── vars
+│   │       └── main.yml
+│   ├── litecoin
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── monit
+│       ├── defaults
+│       │   └── main.yml
+│       ├── tasks
+│       │   └── main.yml
+│       └── vars
+│           └── main.yml
+├── run_ansible.py
+└── vars
+    └── general.yml
+```
 
 ### Setup
 There are a few things you need before you can run the script that provisions the raspberry
