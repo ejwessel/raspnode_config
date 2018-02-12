@@ -31,6 +31,7 @@ TODO: PICTURE ATTACHED
 You can confirm the correct setup of the flash drive by typing `sudo blkid` into terminal and looking for a line that looks like the following:
 
 `/dev/sda1: LABEL="<your usb label>" UUID="<some id>" TYPE="vfat"`
+
 If `TYPE="vfat"` then you're good to go
 
 ### Code Structure
@@ -38,8 +39,16 @@ If `TYPE="vfat"` then you're good to go
 TODO: Insert layout of code structure 
 
 ### Setup
+There are a few things you need before you can run the script that provisions the raspberry
+Install ansible
+Install whatever allows ansible-check
+`ansible-playbook -v -i "localhost," --connection local playbook.yml --extra-vars "currency_type=<CURRENCY>"`  
+
+^ I can probably make all of that added into a single script
 
 ### Advanced
+
+TODO: add SMTP options for alert emails
 
 ### Resources
 - https://bitinfocharts.com/
