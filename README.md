@@ -35,6 +35,8 @@ If `TYPE="vfat"` then you're good to go
 
 ### Code Structure
 
+TODO: Insert layout of code structure 
+
 ### Setup
 
 ### Advanced
