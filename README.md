@@ -19,9 +19,16 @@ _Note: The size of the blockchain may be substrantially larger months or years f
 
 ### Installation of the Rasbian OS
 After initial assembmly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
-TODO: I need some pictures...
+TODO: PICTURES SETUP
 
 ### Setup of External Drive
+Take the external USB flash drive and ensure it's both empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) alredy in the correct format, you just need to empty it.
+
+In order for the setup script to work, we'll need to insert the flash drive into the bottom right USB port. This is configurable in the script, but the script expects it to be in that spot to automount the drive if the pi is to restart. 
+
+TODO: PICTURE ATTACHED
+
+You can confirm the correct setup of the flash drive by typing `sudo blkid`
 
 ### Code Structure
 
