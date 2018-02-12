@@ -28,7 +28,9 @@ In order for the setup script to work, we'll need to insert the flash drive into
 
 TODO: PICTURE ATTACHED
 
-You can confirm the correct setup of the flash drive by typing `sudo blkid`
+You can confirm the correct setup of the flash drive by typing `sudo blkid` into terminal and looking for a line that looks like the following:
+
+`/dev/sda1: LABEL="<your usb label>" UUID="<some id>" TYPE="vfat"`
 
 ### Code Structure
 
