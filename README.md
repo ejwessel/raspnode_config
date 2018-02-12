@@ -42,3 +42,5 @@ TODO: Insert layout of code structure
 ### Advanced
 
 ### Resources
+- https://bitinfocharts.com/
+- http://raspnode.com/
