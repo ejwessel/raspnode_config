@@ -22,15 +22,16 @@ After initial assembmly of the pi, I powered it on, hooked it up to the internet
 TODO: PICTURES SETUP
 
 ### Setup of External Drive
-Take the external USB flash drive and ensure it's both empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) alredy in the correct format, you just need to empty it.
+Take the external USB flash drive and ensure it's both empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) alredy in the correct format, you just need to empty it and give it a better name.
 
-In order for the setup script to work, we'll need to insert the flash drive into the bottom right USB port. This is configurable in the script, but the script expects it to be in that spot to automount the drive if the pi is to restart. 
+~~In order for the setup script to work, we'll need to insert the flash drive into the bottom right USB port. This is configurable in the script, but the script expects it to be in `/dev/sda1` (that spot) to automount the drive if the pi were to restart.~~
 
 TODO: PICTURE ATTACHED
 
 You can confirm the correct setup of the flash drive by typing `sudo blkid` into terminal and looking for a line that looks like the following:
 
 `/dev/sda1: LABEL="<your usb label>" UUID="<some id>" TYPE="vfat"`
+If `TYPE="vfat"` then you're good to go
 
 ### Code Structure
 
