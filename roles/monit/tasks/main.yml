@@ -13,9 +13,9 @@
 - name: Setup monitrc SMTP
   tags: setup_monit_smtp
   become: true
-  insertafter: EOF
   blockinfile:
     dest: "{{ monit_control_path }}"
+    insertafter: EOF
     block: |
       {{ monit_mail_server }}
   when: setup_smtp
