@@ -47,9 +47,9 @@
   become: true
   blockinfile:
     dest: "{{ monit_control_path }}"
-    create: yes
     owner: root
     group: root
     mode: 0600
+    insertafter: EOF
     block: |
       {{ monitrc_file_content }}

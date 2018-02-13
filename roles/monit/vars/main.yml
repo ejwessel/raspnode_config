@@ -1,0 +1,20 @@
+monitrc_file_content: |
+  set daemon 60
+  set logfile /var/log/monit.log
+  set alert {{ alert_email }} only on { nonexist }
+
+  set mail-format {
+      subject: $SERVICE $DESCRIPTION
+      message: $DATE
+  Host:  $HOST
+  Process:  $SERVICE
+  Description:  $DESCRIPTION
+  Action:  Attempting to $ACTION process $SERVICE
+  }
+
+monit_mail_server: |
+  set mailserver
+      {{ server }}
+      port {{ port }}
+      username {{ server_username }} password {{ server_password }}
+      using ssl
