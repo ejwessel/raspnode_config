@@ -3,13 +3,14 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--skip_ansible_install",
-                        action="store_false",
-                        help="allows skipping of ansible install")
+                        action = "store_false",
+                        help = "allows skipping of ansible install")
 parser.add_argument("-c", "--currency_type",
-                        required=True,
+                        required = True,
                         help="bitcoin, ethereum, litecoin")
 parser.add_argument("--smtp",
-                        help="if you have the smpt server, port, username, and password you can set up alerting")
+                        action = "store_true",
+                        help = "if you have the smpt server, port, username, and password you can set up alerting")
 args = parser.parse_args()
 
 #Install ansible. Allows the running of the ansible script
@@ -19,5 +20,7 @@ if (args.skip_ansible_install):
   subprocess.call("apt-get install ansible -y", shell=True)
 
 #Run the ansible commands to set up the node
+
 print args.currency_type
-print args.setup_smtp
+if (args.smtp is not None):
+  print args.smtp
