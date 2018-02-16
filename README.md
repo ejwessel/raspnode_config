@@ -20,7 +20,7 @@ _Note: The size of the blockchain may be substrantially larger months or years f
 - Router and a connection to the Internet
 
 ### Installation of the Rasbian OS
-After initial assembmly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
+After initial assembly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
 
 __TODO: PICTURES SETUP__
 
@@ -34,12 +34,6 @@ Plug the USB  drive into your computer or raspberry, confirm the correct setup o
 If `TYPE="vfat"` then you're good to go. If not then you'll need to format the drive. 
 
 __TODO: STEPS for formatting thd drive__
-
-
-I've inserted my drive like such:
-
-__TODO: PICTURE ATTACHED__
-
 
 ### Code Structure
 ```
@@ -79,6 +73,9 @@ __TODO: PICTURE ATTACHED__
 └── vars
     └── general.yml
 ```
+
+The code is broken up into three main roles: bitcoin, ethereum, and litecoin which depdend on another role, monit.
+Due to the similar nature of setup, `playbook.yml` handles the common setup while the indiviual roles for bitcoin, litecoin, and ethereum are specific. Monit is used to monitor the 'node' process so that if the daemon that is running the the client were to vanish or disappear it would restart that process ensuring that it running. This also means that in the event of a power outage monit will automatically handle the startup of the node. I also use monit as an alerting system. The advanced section contains more about setup of a smtp server to be alerted through email if a process were to not exist or go down.
 
 ### Setup
 There are a few things you need before you can run the script that provisions the raspberry
