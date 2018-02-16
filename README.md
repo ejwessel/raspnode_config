@@ -35,6 +35,37 @@ If `TYPE="vfat"` then you're good to go. If not then you'll need to format the d
 
 __TODO: STEPS for formatting thd drive__
 
+### Running the Setup script
+To make things simple I've made a `setup.py` script that should be all that is needed to set up the node.
+To get things started run:
+
+`sudo python setup.py --currency-type <CURRENCY>`
+
+where <CURRENCY> is bitcoin, ethereum, or litecoin
+    
+
+### Advanced
+For those who are comfortable with the terminal, there are some additional parameters that are available
+```
+-h, --help            show this help message and exit
+--skip-ansible-install
+                    allows skipping of ansible install
+-c CURRENCY_TYPE, --currency-type CURRENCY_TYPE
+                    bitcoin, ethereum, litecoin
+--smtp                if you have the smpt server, port, username, and
+                    password you can set up alerting
+-d, --dry-run         dry-run ansible playbook
+```
+
+Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`
+As mentioned above, I'm using monit to monitor the processes as well as for alerting, using --smtp sets up the monit configuration to use a particular smtp server and send email alerts.
+
+In order to get this to work you'll need to make a few changes to some file variables and run the setup script with an additional parameter.
+
+TODO: what variables need to change
+
+`sudo python setup.py --currency-type <CURRENCY> --smtp`
+
 ### Code Structure
 ```
 .
@@ -76,37 +107,6 @@ __TODO: STEPS for formatting thd drive__
 
 The code is broken up into three main roles: bitcoin, ethereum, and litecoin which depdend on another role, monit.
 Due to the similar nature of setup, `playbook.yml` handles the common setup while the indiviual roles for bitcoin, litecoin, and ethereum are specific. Monit is used to monitor the 'node' process so that if the daemon that is running the the client were to vanish or disappear it would restart that process ensuring that it running. This also means that in the event of a power outage monit will automatically handle the startup of the node. I also use monit as an alerting system to send me an email if a process does go down. The advanced section contains more about alerting and the setup of a smtp server.
-
-### Running the Setup script
-To make things simple I've made a `setup.py` script that should be all that is needed to set up the node.
-To get things started run:
-
-`sudo python setup.py --currency-type <CURRENCY>`
-
-where <CURRENCY> is bitcoin, ethereum, or litecoin
-    
-
-### Advanced
-For those who are comfortable with the terminal, there are some additional parameters that are available
-```
--h, --help            show this help message and exit
---skip-ansible-install
-                    allows skipping of ansible install
--c CURRENCY_TYPE, --currency-type CURRENCY_TYPE
-                    bitcoin, ethereum, litecoin
---smtp                if you have the smpt server, port, username, and
-                    password you can set up alerting
--d, --dry-run         dry-run ansible playbook
-```
-
-Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`
-As mentioned above, I'm using monit to monitor the processes as well as for alerting, using --smtp sets up the monit configuration to use a particular smtp server and send email alerts.
-
-In order to get this to work you'll need to make a few changes to some file variables and run the setup script with an additional parameter.
-
-TODO: what variables need to change
-
-`sudo python setup.py --currency-type <CURRENCY> --smtp`
 
 ### Resources
 - https://bitinfocharts.com/
