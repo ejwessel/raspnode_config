@@ -41,7 +41,7 @@ To get things started run:
 
 `sudo python setup.py --currency-type <CURRENCY>`
 
-where <CURRENCY> is bitcoin, ethereum, or litecoin
+where `<CURRENCY>` is bitcoin, ethereum, or litecoin
     
 
 ### Advanced
