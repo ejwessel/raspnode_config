@@ -23,9 +23,7 @@ if (args.skip_ansible_install):
   subprocess.call("apt-get install ansible -y", shell=True)
 
 #Run the ansible commands to set up the node
-dry_run = ""
-if (args.dry_run):
-  dry_run = "--check"
+dry_run = "--check" if (args.dry_run) else ""
 
 command = 'ansible-playbook -v -i "localhost," --connection local playbook.yml %s --extra-vars "currency_type=%s setup_smtp=%s"' % (dry_run, args.currency_type, str(args.smtp))
 print command
