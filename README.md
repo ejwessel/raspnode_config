@@ -77,13 +77,14 @@ __TODO: STEPS for formatting thd drive__
 The code is broken up into three main roles: bitcoin, ethereum, and litecoin which depdend on another role, monit.
 Due to the similar nature of setup, `playbook.yml` handles the common setup while the indiviual roles for bitcoin, litecoin, and ethereum are specific. Monit is used to monitor the 'node' process so that if the daemon that is running the the client were to vanish or disappear it would restart that process ensuring that it running. This also means that in the event of a power outage monit will automatically handle the startup of the node. I also use monit as an alerting system to send me an email if a process does go down. The advanced section contains more about alerting and the setup of a smtp server.
 
-### Setup
-There are a few things you need before you can run the script that provisions the raspberry
-Install ansible
-Install whatever allows ansible-check
-`ansible-playbook -v -i "localhost," --connection local playbook.yml --extra-vars "currency_type=<CURRENCY>"`  
+### Running the Setup script
+To make things simple I've made a `setup.py` script that should be all that is needed to set up the node.
+To get things started run:
 
-^ I can probably make all of that added into a single script
+`sudo python setup.py --currency-type <CURRENCY>`
+where <CURRENCY> is bitcoin, ethereum, or litecoin
+    
+
 
 ### Advanced
 
