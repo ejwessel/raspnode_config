@@ -105,7 +105,7 @@ TODO: what variables need to change
     └── general.yml
 ```
 
-The code is broken up into three main roles: bitcoin, ethereum, and litecoin which depdend on another role, monit.
+The code is broken up into three main roles: bitcoin, ethereum, and litecoin which depend on another role, monit.
 Due to the similar nature of setup, `playbook.yml` handles the common setup while the indiviual roles for bitcoin, litecoin, and ethereum are specific. Monit is used to monitor the 'node' process so that if the daemon that is running the the client were to vanish or disappear it would restart that process ensuring that it running. This also means that in the event of a power outage monit will automatically handle the startup of the node. I also use monit as an alerting system to send me an email if a process does go down. The advanced section contains more about alerting and the setup of a smtp server.
 
 ### Resources
