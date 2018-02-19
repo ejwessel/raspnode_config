@@ -43,6 +43,7 @@ To get things started run:
 
 where `<CURRENCY>` is `bitcoin`, `ethereum`, or `litecoin`
     
+_NOTE: Be patient. The following tasks take the longest amount of time: Update & Upgrade apt packages, Configure Command, and the Make Command, with the Make Command taking the longest. It took ~ 1.5 hours for me_   
 
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters that are available
