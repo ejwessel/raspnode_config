@@ -45,6 +45,9 @@ where `<CURRENCY>` is `bitcoin`, `ethereum`, or `litecoin`
     
 _NOTE: Be patient. The following tasks take the longest amount of time: Update & Upgrade apt packages, Configure Command, and the Make Command, with the Make Command taking the longest. It took ~ 1.5 hours for me_   
 
+When the setup.py script finishes, reboot the pi.
+`sudo reboot`
+
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters that are available
 ```
