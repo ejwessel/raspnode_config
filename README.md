@@ -48,6 +48,9 @@ _NOTE: Be patient. The following tasks take the longest amount of time: Update &
 When the setup.py script finishes, reboot the pi.
 `sudo reboot`
 
+####Confirm the setup
+TODO:
+
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters that are available
 ```
