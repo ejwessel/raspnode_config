@@ -97,7 +97,7 @@ output will look similar to:
 ```
 /dev/sda1       232G   14G  218G   6% /home/pi/blockchainData
 ```
-_14G is the disk space on the flash drive utilized_
+_14G is the disk space on the flash drive utilized, yours will obviously be a lot smaller since you've just started syncing_
 
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters for `setup.py` that are available
