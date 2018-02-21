@@ -1,7 +1,9 @@
 # Raspnode Config
 
 ### Motivation
-I wanted to setup a raspbery pi as a Bitcoin, Litecoin, or Ethereum full node, but most of the documentation I found online was no longer maintained or hard to find. The guides at http://raspnode.com/ were invaluable for the initial phases, but I still encountered missing depdendencies and issues. While I was able to find the resources I needed and resolve any dependencies that were missing I thought that there might be others that might want to support the network, yet have difficulty getting started or give up due to fragmented resources. I decided that I'd try and consolidate the common steps and turn them into code. This way anybody-including myself-could use reproducible and versioned steps to set up a new node; I thought it would be smarter to represent the [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code).
+I wanted to setup a raspbery pi as a Bitcoin, Litecoin, or Ethereum full node, but most of the documentation I found online was no longer maintained or hard to find. The guides at http://raspnode.com/ were invaluable for the initial phases, but I still encountered missing depdendencies and issues. While I was able to find the resources I needed and resolve any dependencies that were missing I thought that there might be others that might want to support the network, yet have difficulty getting started or give up due to fragmented resources. I decided that I'd try and consolidate the common steps and turn them into code. This way anybody-including myself-could use reproducible and versioned steps to set up a new node; I thought it would be smarter to represent the [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code). 
+
+As an added benfit, I use [Monit](https://mmonit.com/monit/) to monitor the node process and ensure that the node is always up and running incase it were to ever go down.
 
 _Note: a lot of the steps will have overlap to that of raspnode's_
 
@@ -66,9 +68,10 @@ Process Name          = litecoind
 
 For bitcoin and litecoin you can check the status of the daemon with
 
-`bitcoin-cli -datadir=/home/pi/blockchainData getinfo`
-`litecoin-cli -datadir=/home/pi/blockchainData getinfo`
-
+```
+bitcoin-cli -datadir=/home/pi/blockchainData getinfo
+litecoin-cli -datadir=/home/pi/blockchainData getinfo
+```
 It will show you output similar to:
 ```
 {
@@ -90,7 +93,7 @@ You can also check the the disk size of the blockchain and watch it steadily inc
 `df -h | grep blockchainData`
 
 ### Advanced
-For those who are comfortable with the terminal, there are some additional parameters that are available
+For those who are comfortable with the terminal, there are some additional parameters for `setup.py` that are available
 ```
 -h, --help            show this help message and exit
 --skip-ansible-install
@@ -102,8 +105,7 @@ For those who are comfortable with the terminal, there are some additional param
 -d, --dry-run         dry-run ansible playbook
 ```
 
-Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`
-I'm using 'monit' to monitor the processes as well as for alerting, using --smtp sets up the monit configuration to use a smtp server and send email alerts.
+Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`. Adding this flag will configure 'monit'(process manager on the node) to monitor processes in addition to sending alerts.
 
 In order to setup smtp on the node you'll need a few things before you can enable it.
 - SMTP Server
@@ -113,8 +115,13 @@ In order to setup smtp on the node you'll need a few things before you can enabl
 
 If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server)). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
 
-
-In order to get this to work you'll need to make a few changes to some file variables and run the setup script with an additional parameter.
+Once you've got the server, username, password, and port add the following four lines to the file `/role/monit/vars/main.yml` 
+```
+server: smtp.gmail.com
+port: 465
+server_username: <YOUR_EMAIL>
+server_password: <YOUR_PASSWORD>
+```
 
 TODO: what variables need to change
 
