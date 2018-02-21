@@ -100,7 +100,7 @@ output will look similar to:
 _14G is the disk space on the flash drive utilized, yours will obviously be a lot smaller since you've just started syncing_
 
 ### Advanced
-For those who are comfortable with the terminal, there are some additional parameters for `setup.py` that are available
+There are some additional parameters for `setup.py` that are available
 ```
 -h, --help            show this help message and exit
 --skip-ansible-install
