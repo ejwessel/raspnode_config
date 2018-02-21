@@ -97,7 +97,7 @@ output will look similar to:
 ```
 /dev/sda1       232G   14G  218G   6% /home/pi/blockchainData
 ```
-_14G is the disk space utilized_
+_14G is the disk space on the flash drive utilized_
 
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters for `setup.py` that are available
@@ -124,8 +124,8 @@ If you don't have a SMTP server, no worries. I used Google's free SMTP server fo
 
 Once you've got the server, username, password, and port add the following four lines to the end of the file `raspnode_config/roles/monit/vars/main.yml` 
 ```
-server: smtp.gmail.com
-port: 465
+server: <YOUR_SMTP_SERVER>
+port: <YOUR_SMTP_PORT>
 server_username: <YOUR_EMAIL>
 server_password: <YOUR_PASSWORD>
 ```
