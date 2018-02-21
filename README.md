@@ -3,8 +3,6 @@
 ### Motivation
 I wanted to setup a raspbery pi as a Bitcoin, Litecoin, or Ethereum full node, but most of the documentation I found online was no longer maintained or hard to find. The guides at http://raspnode.com/ were invaluable for the initial phases, but I still encountered missing depdendencies and issues. While I was able to find the resources I needed and resolve any dependencies that were missing I thought that there might be others that might want to support the network, yet have difficulty getting started or give up due to fragmented resources. I decided that I'd try and consolidate the common steps and turn them into code. This way anybody-including myself-could use reproducible and versioned steps to set up a new node; I thought it would be smarter to represent the [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code). 
 
-As an added benfit, I use [Monit](https://mmonit.com/monit/) to monitor the node process and ensure that the node is always up and running incase it were to ever go down.
-
 _Note: a lot of the steps will have overlap to that of raspnode's_
 
 ### Hardware
