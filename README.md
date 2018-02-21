@@ -47,6 +47,8 @@ When the setup.py script finishes, reboot the pi.
 
 `sudo reboot`
 
+### Verifying the setup
+
 Upon reboot you can check monit started the respective process for the currency you chose.
 
 `sudo monit -v`
@@ -64,9 +66,27 @@ Process Name          = litecoind
 
 For bitcoin and litecoin you can check the status of the daemon with
 
+`bitcoin-cli -datadir=/home/pi/blockchainData getinfo`
 `litecoin-cli -datadir=/home/pi/blockchainData getinfo`
 
-You can also check the the size of the blockchain and watch it steadily increase by typing
+It will show you output similar to:
+```
+{
+  "version": 130300,
+  "protocolversion": 70015,
+  "blocks": 1372568,
+  "timeoffset": 0,
+  "connections": 8,
+  "proxy": "",
+  "difficulty": 4901959.680958729,
+  "testnet": false,
+  "relayfee": 0.00100000,
+  "errors": ""
+}
+```
+where `blocks` is the [block count](https://bitinfocharts.com/)
+
+You can also check the the disk size of the blockchain and watch it steadily increase by typing
 `df -h | grep blockchainData`
 
 ### Advanced
@@ -83,11 +103,22 @@ For those who are comfortable with the terminal, there are some additional param
 ```
 
 Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`
-As mentioned above, I'm using monit to monitor the processes as well as for alerting, using --smtp sets up the monit configuration to use a particular smtp server and send email alerts.
+I'm using 'monit' to monitor the processes as well as for alerting, using --smtp sets up the monit configuration to use a smtp server and send email alerts.
+
+In order to setup smtp on the node you'll need a few things before you can enable it.
+- SMTP Server
+- SMTP Username
+- SMTP Password
+- SMTP Port
+
+If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server)). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
+
 
 In order to get this to work you'll need to make a few changes to some file variables and run the setup script with an additional parameter.
 
 TODO: what variables need to change
+
+/role/monit/vars/main.yml 
 
 `sudo python setup.py --currency-type <CURRENCY> --smtp`
 
