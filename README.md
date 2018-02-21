@@ -126,15 +126,15 @@ Once you've got the alert email, server, username, password, and port add the fo
 alert_email: <ALERT_EMAIL_ADDRESS>
 server: <YOUR_SMTP_SERVER>
 port: <YOUR_SMTP_PORT>
-server_username: <YOUR_EMAIL>
-server_password: <YOUR_PASSWORD>
+server_username: <YOUR_SMTP_EMAIL>
+server_password: <YOUR_SMTP_PASSWORD>
 ```
 
 You're now ready to run the setup script with smtp enabled
 
 `sudo python setup.py --currency-type <CURRENCY> --smtp`
 
-Now if the respective process goes down you'll get an email with contents similar to
+Now if the respective process goes down you'll get an email from `<YOUR_SMTP_EMAIL>` with contents similar to
 ```
 Tue, 13 Feb 2018 22:49:59
 Host:  raspberrypi
