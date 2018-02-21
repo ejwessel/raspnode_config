@@ -90,7 +90,14 @@ It will show you output similar to:
 where `blocks` is the [block count](https://bitinfocharts.com/)
 
 You can also check the the disk size of the blockchain and watch it steadily increase by typing
-`df -h | grep blockchainData`
+```
+df -h | grep blockchainData
+```
+output will look similar to:
+```
+/dev/sda1       232G   14G  218G   6% /home/pi/blockchainData
+```
+_14G is the disk space utilized_
 
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters for `setup.py` that are available
@@ -115,7 +122,7 @@ In order to setup smtp on the node you'll need a few things before you can enabl
 
 If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server)). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
 
-Once you've got the server, username, password, and port add the following four lines to the file `/role/monit/vars/main.yml` 
+Once you've got the server, username, password, and port add the following four lines to the end of the file `raspnode_config/roles/monit/vars/main.yml` 
 ```
 server: smtp.gmail.com
 port: 465
@@ -123,9 +130,7 @@ server_username: <YOUR_EMAIL>
 server_password: <YOUR_PASSWORD>
 ```
 
-TODO: what variables need to change
-
-/role/monit/vars/main.yml 
+You're now ready to run the setup script with smtp enabled
 
 `sudo python setup.py --currency-type <CURRENCY> --smtp`
 
