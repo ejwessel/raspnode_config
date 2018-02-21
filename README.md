@@ -134,6 +134,15 @@ You're now ready to run the setup script with smtp enabled
 
 `sudo python setup.py --currency-type <CURRENCY> --smtp`
 
+Now if the respective process goes down you'll get an email with contents similar to
+```
+Tue, 13 Feb 2018 22:49:59
+Host:  raspberrypi
+Process:  litecoind
+Description:  process is not running
+Action:  Attempting to restart process litecoind
+```
+
 ### Code Structure
 ```
 .
