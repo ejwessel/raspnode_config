@@ -22,8 +22,6 @@ _Note: The size of the blockchain may be substantially larger months or years fr
 ### Installation of the Rasbian OS
 After initial assembly of the pi, I powered it on, hooked it up to the internet and installed the most basic rasbian os.
 
-__TODO: PICTURES SETUP__
-
 ### Setup of External Drive
 Take the external USB drive and ensure it's empty and using the file format FAT32. If you bought the 256 GB drive above it's (probably) already in the correct format. Empty it's contents and rename it, we will use the name for verifying the drive is using the correct file format.
 
@@ -33,7 +31,7 @@ Plug the USB  drive into your computer or raspberry, confirm the correct setup o
 
 If `TYPE="vfat"` then you're good to go. If not then you'll need to format the drive. 
 
-__TODO: STEPS for formatting thd drive__
+__TODO: STEPS for formatting the drive__
 
 ### Running the Setup script
 To make things simple I've made a `setup.py` script that should be all that is needed to set up the node.
@@ -46,10 +44,30 @@ where `<CURRENCY>` is `bitcoin`, `ethereum`, or `litecoin`
 _NOTE: Be patient. The following tasks take the longest amount of time: Update & Upgrade apt packages, Configure Command, and the Make Command, with the Make Command taking the longest. It took ~ 1.5 hours for me._   
 
 When the setup.py script finishes, reboot the pi.
+
 `sudo reboot`
 
-####Confirm the setup
-TODO:
+Upon reboot you can check monit started the respective process for the currency you chose.
+
+`sudo monit -v`
+
+You should see a section in the output that looks similar to the following:
+```
+Process Name          = litecoind
+ Pid file             = /home/pi/blockchainData/litecoin.pid
+ Monitoring mode      = active
+ On reboot            = start
+ Start program        = '/usr/local/bin/litecoind -datadir=/home/pi/blockchainData -daemon' timeout 30 s
+ Stop program         = '/usr/local/bin/litecoin-cli -datadir=/home/pi/blockchainData stop' timeout 30 s
+ Existence            = if does not exist then restart
+```
+
+For bitcoin and litecoin you can check the status of the daemon with
+
+`litecoin-cli -datadir=/home/pi/blockchainData getinfo`
+
+You can also check the the size of the blockchain and watch it steadily increase by typing
+`df -h | grep blockchainData`
 
 ### Advanced
 For those who are comfortable with the terminal, there are some additional parameters that are available
