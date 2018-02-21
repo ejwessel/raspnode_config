@@ -115,6 +115,7 @@ For those who are comfortable with the terminal, there are some additional param
 Most of the parameters are pretty straight forward, but I want to point out one in particular, `--smtp`. Adding this flag will configure 'monit'(process manager on the node) to monitor processes in addition to sending alerts.
 
 In order to setup smtp on the node you'll need a few things before you can enable it.
+- The address where your alerts will go
 - SMTP Server
 - SMTP Username
 - SMTP Password
@@ -122,8 +123,9 @@ In order to setup smtp on the node you'll need a few things before you can enabl
 
 If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
 
-Once you've got the server, username, password, and port add the following four lines to the end of the file `raspnode_config/roles/monit/vars/main.yml` 
+Once you've got the alert email, server, username, password, and port add the following four lines to the end of the file `raspnode_config/roles/monit/vars/main.yml` 
 ```
+alert_email: <ALERT_EMAIL_ADDRESS>
 server: <YOUR_SMTP_SERVER>
 port: <YOUR_SMTP_PORT>
 server_username: <YOUR_EMAIL>
