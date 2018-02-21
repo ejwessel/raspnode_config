@@ -120,7 +120,7 @@ In order to setup smtp on the node you'll need a few things before you can enabl
 - SMTP Password
 - SMTP Port
 
-If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server)). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
+If you don't have a SMTP server, no worries. I used Google's free SMTP server following [this guide](https://www.hostinger.com/tutorials/how-to-use-free-google-smtp-server). I just needed to setup a new google account and then 'enable access for less secure apps'. Google's SMTP server is: `smtp.gmail.com` and port is `465`
 
 Once you've got the server, username, password, and port add the following four lines to the end of the file `raspnode_config/roles/monit/vars/main.yml` 
 ```
