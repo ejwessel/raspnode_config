@@ -29,9 +29,7 @@ Plug the USB  drive into your computer or raspberry, confirm the correct setup o
 
 `/dev/sda1: LABEL="<your usb label>" UUID="<some id>" TYPE="vfat"`
 
-If `TYPE="vfat"` then you're good to go. If not then you'll need to format the drive. 
-
-__TODO: STEPS for formatting the drive__
+If `TYPE="vfat"` then you're good to go. If not then you'll need to [format the drive](https://askubuntu.com/questions/22381/how-to-format-a-usb-flash-drive). 
 
 ### Running the Setup script
 To make things simple I've made a `setup.py` script that should be all that is needed to set up the node.
