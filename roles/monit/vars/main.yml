@@ -1,5 +1,5 @@
 monitrc_file_content: |
-  set daemon 60
+  set daemon 60 with start delay 120
   set logfile /var/log/monit.log
   set alert {{ alert_email }} only on { nonexist }
 
