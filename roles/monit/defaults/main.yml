@@ -1,5 +1,5 @@
 monit_path: "/usr/bin/monit"
-monit_control_path: "/etc/monit/monitrc"
+monit_control_path: "/etc/monit/monitrc_pi"
 
 alert_email: none@none.com
 
