@@ -1,3 +1,10 @@
+- name: Clear monitrc file
+  tags: clear_monitrc_contents
+  become: true
+  file:
+    state: absent
+    path: "{{ monit_control_path }}"
+
 - name: Setup monitrc file base
   tags: setup_monitrc_base
   become: true
